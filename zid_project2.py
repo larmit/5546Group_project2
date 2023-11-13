@@ -83,7 +83,12 @@ def read_prc_csv(tic):
        'aaa.csv' are different files). 
 
     """
-    # <COMPLETE THIS PART>
+    modified_tic = tic.lower()
+    csvfile = os.path.join(cfg.DATADIR, f"{modified_tic}_prc.csv")
+    df_raw = pd.read_csv(csvfile, parse_dates=['Date'], index_col='Date')
+    df = cfg.standardise_colnames(df_raw)
+    df.sort_index(inplace=Ture)
+    return df
 
 
 
