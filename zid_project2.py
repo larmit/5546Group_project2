@@ -280,7 +280,13 @@ def mk_ret_df(prc_df):
 
 
     """
-    # <COMPLETE THIS PART>
+    prc_df.sort_index(inplace=True)
+    st_ret = prc_df.ffill().pct_change()
+    pth = os.path.join(cfg.FF_CSV)
+    mk_data = pd.read_csv(pth,index_col='Date',parse_dates=['Date'])
+    mk_ret = mk_data['mkt']
+    df = st_ret.join(mk_ret.rename('mkt'),how='inner')
+    df = df[df.index.isin(prc_df.index)]
 
 
 
