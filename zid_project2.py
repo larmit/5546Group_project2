@@ -292,6 +292,7 @@ def mk_ret_df(prc_df):
     mk_ret = mk_data['mkt']
     df = st_ret.join(mk_ret.rename('mkt'),how='inner')
     df = df[df.index.isin(prc_df.index)]
+    return df
 
 
 
